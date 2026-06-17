@@ -8,6 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        
+        /* 📢 Tailwind CSS v4 でクラスベースのダークモード（.dark）を有効化するための重要な設定 */
+        @variant dark (&:where(.dark, .dark *));
+
         body {
             font-family: 'Noto Sans JP', sans-serif;
         }
@@ -50,7 +54,6 @@
                 スケジュール設定
             </h2>
             
-            <!-- smサイズ以上では横並び3列、極小スマホでは縦並びに自動切り替え -->
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-3 md:gap-4">
                 <div>
                     <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">総勉強時間 (分)</label>
@@ -93,7 +96,6 @@
         <!-- 右サイド：タイマー表示＆コントロールエリア -->
         <section class="md:col-span-3 space-y-4 md:space-y-6 w-full">
             
-            <!-- パディングと最小高さをモバイルに合わせて流動化 -->
             <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[340px]">
                 
                 <div class="mb-1 md:mb-2">
@@ -106,7 +108,6 @@
                     セッション -- / --
                 </div>
 
-                <!-- モバイルで絶対にはみ出さないように流動的なフォントサイズを適用 -->
                 <div id="timerDisplay" class="timer-font text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight my-2 md:my-4 text-slate-800 dark:text-slate-100 select-none">
                     00:00
                 </div>
@@ -130,7 +131,7 @@
                 </div>
             </div>
 
-            <!-- コントロールボタン：極小スマホでも綺麗に3列に並ぶように余白とパディングを調整 -->
+            <!-- コントロールボタン -->
             <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
                 <button id="startPauseBtn" class="py-3 md:py-3.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 disabled:hover:bg-emerald-600 text-white font-medium rounded-xl shadow-md transition-all flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 cursor-pointer text-xs sm:text-sm md:text-base">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -191,16 +192,16 @@
                 triggerBeep(523.25, 0.1, now);     // C5
                 triggerBeep(659.25, 0.15, now + 0.12); // E5
             } else if (type === 'study') {
-                // 休憩終了 ➔ 勉強開始時の効果音：集中へと引き上げる爽やかな上昇音
+                // 休憩終了 ➔ 勉強開始時の効果音
                 triggerBeep(523.25, 0.08, now);       // C5
                 triggerBeep(659.25, 0.08, now + 0.08);  // E5
                 triggerBeep(783.99, 0.15, now + 0.16);  // G5
             } else if (type === 'break') {
-                // 勉強終了 ➔ 休憩時の効果音：リラックスを促す落ち着いた下行音
+                // 勉強終了 ➔ 休憩時の効果音
                 triggerBeep(587.33, 0.15, now);    // D5
                 triggerBeep(493.88, 0.2, now + 0.15);  // B4
             } else if (type === 'tick') {
-                // 残り5秒以下の秒読み音：短く控えめな高音
+                // 残り5秒以下の秒読み音
                 triggerBeep(880.00, 0.04, now);    // A5 (短めのピ音)
             } else if (type === 'complete') {
                 // 全行程終了：ファンファーレ風和音

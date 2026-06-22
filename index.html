@@ -9,9 +9,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
         
-        /* 📢 Tailwind CSS v4 でクラスベースのダークモード（.dark）を有効化するための重要な設定 */
-        @variant dark (&:where(.dark, .dark *));
-
         body {
             font-family: 'Noto Sans JP', sans-serif;
         }
@@ -20,34 +17,23 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between transition-colors duration-300">
 
     <header class="max-w-4xl w-full mx-auto px-4 pt-4 md:pt-6 flex justify-between items-center">
         <div class="flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h1 class="text-lg md:text-xl font-bold tracking-tight">StudyIntervals</h1>
         </div>
-        <!-- ダークモードトグルボタン -->
-        <button id="themeToggle" class="p-2 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer" aria-label="テーマ切り替え">
-            <!-- 太陽アイコン -->
-            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
-            <!-- 月アイコン -->
-            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-        </button>
     </header>
 
     <main class="max-w-4xl w-full mx-auto px-4 py-4 md:py-8 flex-grow grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-8 items-start">
         
         <!-- 左サイド：スケジュール設定エリア -->
-        <section class="md:col-span-2 bg-white dark:bg-slate-800 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-4 md:space-y-6">
+        <section class="md:col-span-2 bg-slate-800 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-700 space-y-4 md:space-y-6">
             <h2 class="text-base md:text-lg font-bold flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
@@ -56,36 +42,50 @@
             
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-3 md:gap-4">
                 <div>
-                    <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">総勉強時間 (分)</label>
-                    <input type="number" id="totalTime" value="90" min="0.1" step="any" class="w-full px-3 py-2 md:px-4 md:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-sm md:text-base">
+                    <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">総勉強時間 (分)</label>
+                    <input type="number" id="totalTime" value="90" min="0.1" step="any" class="w-full px-3 py-2 md:px-4 md:py-2.5 rounded-xl border border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-sm md:text-base text-white disabled:opacity-50 disabled:cursor-not-allowed">
                 </div>
                 <div>
-                    <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">教科数</label>
-                    <input type="number" id="subjectCount" value="3" min="1" step="1" class="w-full px-3 py-2 md:px-4 md:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-sm md:text-base">
+                    <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">教科数</label>
+                    <input type="number" id="subjectCount" value="3" min="1" step="1" class="w-full px-3 py-2 md:px-4 md:py-2.5 rounded-xl border border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-sm md:text-base text-white disabled:opacity-50 disabled:cursor-not-allowed">
                 </div>
                 <div>
-                    <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">教科間の休憩 (分)</label>
-                    <input type="number" id="breakTime" value="5" min="0" step="any" class="w-full px-3 py-2 md:px-4 md:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-sm md:text-base">
+                    <label class="block text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">教科間の休憩 (分)</label>
+                    <input type="number" id="breakTime" value="5" min="0" step="any" class="w-full px-3 py-2 md:px-4 md:py-2.5 rounded-xl border border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-sm md:text-base text-white disabled:opacity-50 disabled:cursor-not-allowed">
                 </div>
             </div>
 
+            <!-- 休憩時間の包含設定オプション -->
+            <div class="pt-2">
+                <label class="relative flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-slate-900/50 cursor-pointer hover:bg-slate-900 transition-colors select-none">
+                    <input type="checkbox" id="includeBreak" checked class="sr-only peer disabled:opacity-50">
+                    <!-- 📢 トグルスイッチのつまみ（after疑似要素）の基準点をこの背景div（relative）に修正しました -->
+                    <div class="relative w-9 h-5 bg-slate-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-indigo-500 peer-checked:bg-indigo-500 transition-colors duration-200 after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-4"></div>
+                    <span class="text-xs md:text-sm font-medium text-slate-300">休憩時間を総時間に含める</span>
+                </label>
+            </div>
+
             <!-- 計算結果のリアルタイム表示 -->
-            <div id="calcPreview" class="p-3 md:p-4 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900 text-xs md:text-sm space-y-1">
-                <div class="flex justify-between text-slate-600 dark:text-slate-400">
+            <div id="calcPreview" class="p-3 md:p-4 rounded-xl bg-indigo-950/30 border border-indigo-900 text-xs md:text-sm space-y-1">
+                <div class="flex justify-between text-slate-300">
                     <span>1教科あたりの勉強時間:</span>
-                    <span id="previewStudyTime" class="font-bold text-indigo-600 dark:text-indigo-400">-- 分</span>
+                    <span id="previewStudyTime" class="font-bold text-indigo-400">-- 分</span>
                 </div>
-                <div class="flex justify-between text-slate-500">
+                <div class="flex justify-between text-slate-400">
                     <span>総休憩時間:</span>
                     <span id="previewTotalBreak">-- 分</span>
                 </div>
-                <div class="pt-2 border-t border-indigo-100/50 dark:border-indigo-900/50 text-[10px] md:text-[11px] text-indigo-500 dark:text-indigo-400 text-center">
+                <div class="flex justify-between text-xs text-slate-400 pt-1 border-t border-indigo-900/20">
+                    <span>合計必要時間:</span>
+                    <span id="previewTotalRequired" class="font-semibold text-emerald-400">-- 分</span>
+                </div>
+                <div class="pt-2 border-t border-indigo-900/50 text-[10px] md:text-[11px] text-indigo-400 text-center" id="lockStatusMessage">
                     ✨ 入力値は自動的に即時適用されます
                 </div>
             </div>
 
             <!-- エラーメッセージ -->
-            <div id="errorMessage" class="hidden p-3 md:p-4 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900 text-rose-600 dark:text-rose-400 text-xs md:text-sm flex items-start gap-2">
+            <div id="errorMessage" class="hidden p-3 md:p-4 rounded-xl bg-rose-950/30 border border-rose-900 text-rose-400 text-xs md:text-sm flex items-start gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                 </svg>
@@ -96,24 +96,24 @@
         <!-- 右サイド：タイマー表示＆コントロールエリア -->
         <section class="md:col-span-3 space-y-4 md:space-y-6 w-full">
             
-            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[340px]">
+            <div class="bg-slate-800 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-700 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[340px]">
                 
                 <div class="mb-1 md:mb-2">
-                    <span id="statusBadge" class="px-2.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-bold tracking-wide uppercase rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                    <span id="statusBadge" class="px-2.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-bold tracking-wide uppercase rounded-full bg-slate-700 text-slate-300">
                         スタンバイ
                     </span>
                 </div>
 
-                <div id="sessionProgress" class="text-xs md:text-sm font-medium text-slate-400 dark:text-slate-500 mb-1 md:mb-2">
+                <div id="sessionProgress" class="text-xs md:text-sm font-medium text-slate-500 mb-1 md:mb-2">
                     セッション -- / --
                 </div>
 
-                <div id="timerDisplay" class="timer-font text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight my-2 md:my-4 text-slate-800 dark:text-slate-100 select-none">
+                <div id="timerDisplay" class="timer-font text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight my-2 md:my-4 text-slate-100 select-none">
                     00:00
                 </div>
 
                 <!-- 音声切り替えボタン -->
-                <button id="muteToggle" class="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors cursor-pointer" aria-label="消音切り替え">
+                <button id="muteToggle" class="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-xl text-slate-400 hover:text-slate-200 transition-colors cursor-pointer" aria-label="消音切り替え">
                     <svg id="soundOnIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                     </svg>
@@ -125,9 +125,9 @@
             </div>
 
             <!-- 進捗バー -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
-                <div class="text-[10px] md:text-xs font-semibold text-slate-400 dark:text-slate-500 mb-2 uppercase tracking-wider">全体の進行度</div>
-                <div id="timelineContainer" class="flex gap-1 h-3 w-full bg-slate-100 dark:bg-slate-900 rounded-full p-0.5 overflow-hidden">
+            <div class="bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-700">
+                <div class="text-[10px] md:text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wider">全体の進行度</div>
+                <div id="timelineContainer" class="flex gap-1 h-3 w-full bg-slate-900 rounded-full p-0.5 overflow-hidden">
                 </div>
             </div>
 
@@ -137,11 +137,11 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
                     <span>スタート</span>
                 </button>
-                <button id="skipBtn" class="py-3 md:py-3.5 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 disabled:opacity-40 text-slate-700 dark:text-slate-200 font-medium rounded-xl transition-all flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 cursor-pointer text-xs sm:text-sm md:text-base">
+                <button id="skipBtn" class="py-3 md:py-3.5 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 text-slate-200 font-medium rounded-xl transition-all flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 cursor-pointer text-xs sm:text-sm md:text-base">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
                     <span>スキップ</span>
                 </button>
-                <button id="resetBtn" class="py-3 md:py-3.5 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium rounded-xl transition-all flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 cursor-pointer text-xs sm:text-sm md:text-base">
+                <button id="resetBtn" class="py-3 md:py-3.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium rounded-xl transition-all flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 cursor-pointer text-xs sm:text-sm md:text-base">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 110 2H4a1 1 0 01-1-1V3a1 1 0 011-1z" clip-rule="evenodd"/></svg>
                     <span>リセット</span>
                 </button>
@@ -150,7 +150,7 @@
         </section>
     </main>
 
-    <footer class="text-center py-4 md:py-6 text-xs text-slate-400 dark:text-slate-500">
+    <footer class="text-center py-4 md:py-6 text-xs text-slate-500">
         &copy; 2026 StudyIntervals. Made for focus.
     </footer>
 
@@ -160,6 +160,7 @@
             totalTime: 90,
             subjectCount: 3,
             breakTime: 5,
+            includeBreak: true, // 休憩時間を総時間に含めるか
             calculatedStudyTimeSec: 0, // 秒単位で保持
             calculatedBreakTimeSec: 0,
             
@@ -171,7 +172,8 @@
             // タイマー制御用インスタンス
             timerId: null,
             isRunning: false,
-            isMuted: false
+            isMuted: false,
+            isStarted: false // 一度でもスタートされたかどうかを保持
         };
 
         // --- Web Audio API 通知サウンドエンジン ---
@@ -180,7 +182,7 @@
         function playTone(type) {
             if (state.isMuted) return;
             
-            // AudioContextのレジューム処理（ブラウザポリシー対応）
+            // AudioContextのレジューム処理
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
@@ -235,8 +237,11 @@
             totalTime: document.getElementById('totalTime'),
             subjectCount: document.getElementById('subjectCount'),
             breakTime: document.getElementById('breakTime'),
+            includeBreak: document.getElementById('includeBreak'),
             previewStudyTime: document.getElementById('previewStudyTime'),
             previewTotalBreak: document.getElementById('previewTotalBreak'),
+            previewTotalRequired: document.getElementById('previewTotalRequired'),
+            lockStatusMessage: document.getElementById('lockStatusMessage'),
             errorMessage: document.getElementById('errorMessage'),
             errorText: document.getElementById('errorText'),
             
@@ -249,9 +254,6 @@
             skipBtn: document.getElementById('skipBtn'),
             resetBtn: document.getElementById('resetBtn'),
             
-            themeToggle: document.getElementById('themeToggle'),
-            sunIcon: document.getElementById('sunIcon'),
-            moonIcon: document.getElementById('moonIcon'),
             muteToggle: document.getElementById('muteToggle'),
             soundOnIcon: document.getElementById('soundOnIcon'),
             soundOffIcon: document.getElementById('soundOffIcon')
@@ -264,6 +266,7 @@
             const totalMin = parseFloat(el.totalTime.value) || 0;
             const subs = parseInt(el.subjectCount.value) || 0;
             const breakMin = parseFloat(el.breakTime.value) || 0;
+            const includeBreak = el.includeBreak.checked;
 
             if (subs <= 0 || totalMin <= 0) {
                 showError("総勉強時間および教科数は1以上を入力してください。");
@@ -272,25 +275,36 @@
 
             const breakCount = subs - 1;
             const totalBreakMin = breakMin * breakCount;
-            const totalStudyMin = totalMin - totalBreakMin;
+            
+            let studyTimePerSubjectMin = 0;
+            let totalRequiredMin = 0;
 
-            if (totalStudyMin <= 0) {
-                showError("休憩が多すぎるため勉強時間が残りません。調整してください。");
-                return false;
+            if (includeBreak) {
+                // 休憩時間を総時間に含める（従来ロジック）
+                const totalStudyMin = totalMin - totalBreakMin;
+                if (totalStudyMin <= 0) {
+                    showError("休憩が多すぎるため勉強時間が残りません。調整してください。");
+                    return false;
+                }
+                studyTimePerSubjectMin = totalStudyMin / subs;
+                totalRequiredMin = totalMin; // 合計必要時間は入力された総時間そのもの
+            } else {
+                // 休憩時間を総時間に含めない（新規ロジック）
+                studyTimePerSubjectMin = totalMin / subs; // 入力時間は純粋に教科数で等分
+                totalRequiredMin = totalMin + totalBreakMin; // 合計時間は勉強総時間＋休憩時間
             }
-
-            // 1教科あたりの分数計算（秒単位に厳密に展開）
-            const studyTimePerSubjectMin = totalStudyMin / subs;
             
             // プレビュー表示の更新
             el.previewStudyTime.textContent = `${Math.floor(studyTimePerSubjectMin * 10) / 10} 分`;
             el.previewTotalBreak.textContent = `${Math.floor(totalBreakMin * 10) / 10} 分`;
+            el.previewTotalRequired.textContent = `${Math.floor(totalRequiredMin * 10) / 10} 分`;
             hideError();
 
             // 内部状態の保存
             state.totalTime = totalMin;
             state.subjectCount = subs;
             state.breakTime = breakMin;
+            state.includeBreak = includeBreak;
             
             // 秒数に直した時にズレが生じないよう、しっかり四捨五入して整数値(秒)として保持
             state.calculatedStudyTimeSec = Math.round(studyTimePerSubjectMin * 60);
@@ -364,11 +378,11 @@
         function updateStatusUI(step) {
             if (step.type === 'study') {
                 el.statusBadge.textContent = '勉強中';
-                el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300";
+                el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-indigo-950 text-indigo-300";
                 el.sessionProgress.textContent = `第 ${step.subIndex} 教科 (全 ${state.subjectCount} 教科中)`;
             } else {
                 el.statusBadge.textContent = '休憩中';
-                el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300";
+                el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-teal-950 text-teal-300";
                 el.sessionProgress.textContent = `次の教科へのインターバル`;
             }
         }
@@ -394,20 +408,20 @@
 
                 if (index < state.currentStepIndex) {
                     // 終了したセッション
-                    seg.className = "h-full rounded-full flex-grow bg-slate-300 dark:bg-slate-600 opacity-40";
+                    seg.className = "h-full rounded-full flex-grow bg-slate-700 opacity-40";
                 } else if (index === state.currentStepIndex) {
                     // 現在進行中のセッション
                     if (step.type === 'study') {
-                        seg.className = "h-full rounded-full flex-grow bg-indigo-600 dark:bg-indigo-400 shadow-sm ring-2 ring-indigo-500/20";
+                        seg.className = "h-full rounded-full flex-grow bg-indigo-400 shadow-sm ring-2 ring-indigo-500/20";
                     } else {
-                        seg.className = "h-full rounded-full flex-grow bg-teal-500 dark:bg-teal-400 shadow-sm ring-2 ring-teal-500/20";
+                        seg.className = "h-full rounded-full flex-grow bg-teal-400 shadow-sm ring-2 ring-teal-500/20";
                     }
                 } else {
                     // 未到達のセッション
                     if (step.type === 'study') {
-                        seg.className = "h-full rounded-full flex-grow bg-indigo-200 dark:bg-indigo-900/50";
+                        seg.className = "h-full rounded-full flex-grow bg-indigo-900/50";
                     } else {
-                        seg.className = "h-full rounded-full flex-grow bg-teal-200 dark:bg-teal-900/50";
+                        seg.className = "h-full rounded-full flex-grow bg-teal-900/50";
                     }
                 }
             });
@@ -436,6 +450,28 @@
             }
         }
 
+        // 入力フォームとトグルスイッチの有効・無効をコントロールする関数
+        function setInputsDisabled(disabled) {
+            el.totalTime.disabled = disabled;
+            el.subjectCount.disabled = disabled;
+            el.breakTime.disabled = disabled;
+            el.includeBreak.disabled = disabled;
+            
+            // 親ラベルのホバーやカーソルスタイルを調整
+            const labelContainer = el.includeBreak.closest('label');
+            if (disabled) {
+                labelContainer.classList.add('opacity-50', 'cursor-not-allowed');
+                labelContainer.classList.remove('cursor-pointer', 'hover:bg-slate-900');
+                el.lockStatusMessage.textContent = "🔒 スタート中（変更はリセットが必要）";
+                el.lockStatusMessage.className = "pt-2 border-t border-indigo-900/50 text-[10px] md:text-[11px] text-amber-400 text-center font-medium";
+            } else {
+                labelContainer.classList.remove('opacity-50', 'cursor-not-allowed');
+                labelContainer.classList.add('cursor-pointer', 'hover:bg-slate-900');
+                el.lockStatusMessage.textContent = "✨ 入力値は自動的に即時適用されます";
+                el.lockStatusMessage.className = "pt-2 border-t border-indigo-900/50 text-[10px] md:text-[11px] text-indigo-400 text-center";
+            }
+        }
+
         // スタート・一時停止切り替え
         function toggleStartPause() {
             if (state.isRunning) {
@@ -446,6 +482,12 @@
                 el.startPauseBtn.className = "py-3 md:py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl shadow-md transition-all flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 cursor-pointer text-xs sm:text-sm md:text-base";
             } else {
                 // 開始
+                // 初回のスタート時に、すべての入力欄をロック
+                if (!state.isStarted) {
+                    state.isStarted = true;
+                    setInputsDisabled(true);
+                }
+
                 // 最初の開始時のみ 'start' サウンド再生
                 if (state.currentStepIndex === 0 && state.timeLeft === state.timeline[0].duration) {
                     playTone('start');
@@ -484,7 +526,7 @@
             playTone('complete');
             
             el.statusBadge.textContent = '全セッション終了';
-            el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300";
+            el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-purple-950 text-purple-300";
             el.sessionProgress.textContent = 'おつかれさまでした！';
             el.timerDisplay.textContent = 'DONE';
             
@@ -496,6 +538,8 @@
         function resetTimer() {
             pauseTimer();
             state.currentStepIndex = 0;
+            state.isStarted = false; // ロック状態フラグを解除
+            setInputsDisabled(false); // 入力欄のロックを解除
             
             if (calculateSchedule()) {
                 buildTimeline();
@@ -504,7 +548,7 @@
             } else {
                 el.timerDisplay.textContent = "00:00";
                 el.statusBadge.textContent = "スタンバイ";
-                el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300";
+                el.statusBadge.className = "px-3 py-1 text-xs font-bold tracking-wide uppercase rounded-full bg-slate-700 text-slate-300";
                 el.sessionProgress.textContent = "セッション -- / --";
                 el.timelineContainer.innerHTML = '';
                 el.startPauseBtn.disabled = true;
@@ -514,52 +558,11 @@
 
         // スケジュール設定変更時の瞬時リアルタイム適用
         function handleInputChange() {
-            // 現在タイマー稼働中の場合は、不意のリセットを防ぐために一時停止状態にします
-            if (state.isRunning) {
-                pauseTimer();
-            }
-            // 即座にスケジュールを再計算＆反映
+            // タイマーが稼働（あるいは一度開始）している時はこの入力処理は通りません（UIロックされているため）
+            if (state.isStarted) return;
+            
             if (calculateSchedule()) {
                 buildTimeline();
-            }
-        }
-
-        // --- カラーテーマ調整 (ダークモード) ---
-
-        // 初期カラーテーマ判定と反映
-        function initTheme() {
-            const hasLocalStorageTheme = localStorage.getItem('color-theme') === 'dark';
-            const hasSystemTheme = (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            
-            if (hasLocalStorageTheme || hasSystemTheme) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-            updateThemeUI();
-        }
-
-        // テーマ切替とアイコン切り替え
-        function toggleTheme() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-            updateThemeUI();
-        }
-
-        // アイコン表示状態の完全な制御
-        function updateThemeUI() {
-            const isDark = document.documentElement.classList.contains('dark');
-            if (isDark) {
-                el.sunIcon.classList.remove('hidden');  // 太陽アイコンを表示
-                el.moonIcon.classList.add('hidden');   // 月アイコンを隠す
-            } else {
-                el.sunIcon.classList.add('hidden');    // 太陽アイコンを隠す
-                el.moonIcon.classList.remove('hidden'); // 月アイコンを表示
             }
         }
 
@@ -577,21 +580,19 @@
 
         // --- イベントリスナーの登録 ---
         
-        // 入力値を変更したその瞬間に反映されるよう `input` イベントにバインド
+        // 入力値を変更したその瞬間に反映されるよう `input` / `change` イベントにバインド
         [el.totalTime, el.subjectCount, el.breakTime].forEach(input => {
             input.addEventListener('input', handleInputChange);
         });
+        el.includeBreak.addEventListener('change', handleInputChange); // トグルスイッチの変更イベント
 
         // ボタン操作
         el.startPauseBtn.addEventListener('click', toggleStartPause);
         el.skipBtn.addEventListener('click', skipStep);
         el.resetBtn.addEventListener('click', resetTimer);
-        el.themeToggle.addEventListener('click', toggleTheme);
         el.muteToggle.addEventListener('click', toggleMute);
 
         // --- アプリケーション起動処理 ---
-        // ダークモード設定の読み込み
-        initTheme();
         // 初回の時間計算とタイムライン生成
         calculateSchedule();
         buildTimeline();
